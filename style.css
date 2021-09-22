@@ -1,1 +1,18 @@
-@charset "utf-8";
+
+
+#calc-container {
+	display: flex;
+	width: 350px;
+	height: 500px;
+	margin: 100px auto;
+	border: 1px solid #000;
+
+}
+
+.button {
+	display: inline-block;
+	width: 20%;
+	height: calc(20/100 * 350px);
+	margin-left:4%;
+	background-color: #c5c5c5;
+}
