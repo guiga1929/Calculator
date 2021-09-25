@@ -6,6 +6,7 @@ body {
 }
 
 #calc-container {
+	position: relative;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -17,6 +18,16 @@ body {
 	padding: 10px;
 	background-color: #429EA6; 
 	box-shadow: 0px 0px 0px 2px #A0A0A0, 2px 2px 42px 4px rgba(255,255,255,0.5);
+}
+
+.screen {
+	position: absolute;
+	right:20px;
+	top: 60px;
+
+	font-family: 'Barlow Condensed', sans-serif;
+	color:#fff;
+	font-size: 3.7em;
 }
 
 .button {
@@ -42,3 +53,4 @@ body {
 .button:active {
 	background-image: linear-gradient(to bottom left, #28414f, #539fa6);
 }
+
