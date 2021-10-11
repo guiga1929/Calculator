@@ -48,11 +48,17 @@ function buttonPress (button, text) {
 
 
 	}
-	/*  codar
+
 	if(button.classList.contains("clear-entry")){
-	
-		toString(screen.textContent);
-	}*/
+
+		if(screen.textContent.length == 1) {
+			screen.textContent = 0;
+		} else{
+			screen.textContent = screen.textContent.slice(0, -1);
+			console.log(screen.textContent);	
+		}	
+
+	}
 
 	if(button.classList.contains("all-clear")){
 	
@@ -60,6 +66,10 @@ function buttonPress (button, text) {
 		act_num = 0;
 		prev_num = 0;
 		screen.textContent = 0;
+	}
+
+	if(button.classList.contains("invert-sign")){
+		screen.textContent = parseFloat(screen.textContent) - 2 * parseFloat(screen.textContent);
 	}
 
 	if(button.classList.contains("equals")){
@@ -96,4 +106,8 @@ function buttonPress (button, text) {
 
 	}
 
+}
+
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
 }
