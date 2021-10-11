@@ -6,7 +6,8 @@ let buttons = document.querySelectorAll('.button');
 let act_num;
 let prev_num;
 let operation;
-let flag = false;
+let flag = false;   // flag for not cumulating numbers on calc screen 
+let p_flag = false; // flag for the dot
 let result = 0;
 
 let entryList = [];
@@ -27,25 +28,33 @@ function buttonPress (button, text) {
 
 	if(button.classList.contains("number")) {
 
-		if(screen.textContent == 0 || flag == true){
-			screen.textContent = text;
-			flag = false;
-
-		} else{
-
+		if(p_flag == true){
 			screen.textContent += text;
+
+		}else {
+
+			if(screen.textContent == 0 || flag == true){
+				screen.textContent = text;
+				flag = false;
+
+			} else{
+
+				screen.textContent += text;
+			}
 		}
 	} 
 
 	if(button.classList.contains("operation")){
 	
 		operation = button.textContent;
-		console.log(operation);
+
 		if(screen.textContent == 0) return
 
-		prev_num = parseInt(screen.textContent);
-		screen.textContent = "";
-
+		prev_num = parseFloat(screen.textContent);
+		
+		makeDealy();
+		flag = true;
+		p_flag = false;
 
 	}
 
@@ -72,9 +81,22 @@ function buttonPress (button, text) {
 		screen.textContent = parseFloat(screen.textContent) - 2 * parseFloat(screen.textContent);
 	}
 
+	if(button.classList.contains("point")){
+
+		p_flag = true;
+		
+		if(screen.textContent == 0 || flag == true){
+			screen.textContent = "0" + text;
+			flag = false;
+
+		} else{
+			screen.textContent += text;
+		}
+	}
+
 	if(button.classList.contains("equals")){
 
-		act_num = parseInt(screen.textContent);
+		act_num = parseFloat(screen.textContent);
 		console.log(prev_num, operation, act_num);
 
 		switch(operation){
@@ -111,3 +133,11 @@ function buttonPress (button, text) {
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+let makeDealy = () => {
+	var t = screen.textContent;
+	screen.textContent = "";
+	setTimeout(function(){
+		screen.textContent = t;
+	}, 50);
+};
