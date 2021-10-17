@@ -81,7 +81,9 @@ function buttonPress (button, text) {
 		screen.textContent = parseFloat(screen.textContent) - 2 * parseFloat(screen.textContent);
 	}
 
-	if(button.classList.contains("point")){
+	if(button.classList.contains("dot")){
+
+		if(p_flag == true) return;
 
 		p_flag = true;
 		
@@ -92,6 +94,7 @@ function buttonPress (button, text) {
 		} else{
 			screen.textContent += text;
 		}
+		
 	}
 
 	if(button.classList.contains("equals")){
@@ -125,6 +128,7 @@ function buttonPress (button, text) {
 
 		screen.textContent = result;
 		flag = true;
+		p_flag = false;
 
 	}
 
