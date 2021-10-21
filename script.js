@@ -3,7 +3,7 @@ const screen = document.querySelector(".screen");
 screen.textContent = 0;
 
 let buttons = document.querySelectorAll('.button');
-let act_num;
+let act_num = 0;
 let prev_num;
 let operation;
 let flag = false;   // flag for not cumulating numbers on calc screen 
@@ -29,6 +29,8 @@ function buttonPress (button, text) {
 	if(button.classList.contains("number")) {
 
 		if(p_flag == true){
+
+			if(screen.textContent.length > 8) return;
 			screen.textContent += text;
 
 		}else {
@@ -38,7 +40,7 @@ function buttonPress (button, text) {
 				flag = false;
 
 			} else{
-
+				if(screen.textContent.length > 7) return;
 				screen.textContent += text;
 			}
 		}
@@ -92,6 +94,7 @@ function buttonPress (button, text) {
 			flag = false;
 
 		} else{
+			if(screen.textContent.length > 7) return;
 			screen.textContent += text;
 		}
 		
@@ -99,7 +102,10 @@ function buttonPress (button, text) {
 
 	if(button.classList.contains("equals")){
 
-		act_num = parseFloat(screen.textContent);
+		if (act_num == 0) {
+			act_num = parseFloat(screen.textContent);
+			alert("diferent de 0 o valor é de", act_num);
+		}
 		console.log(prev_num, operation, act_num);
 
 		switch(operation){
@@ -126,7 +132,8 @@ function buttonPress (button, text) {
 		}
 
 
-		screen.textContent = result;
+		screen.textContent = result.toString().substring(0,8);
+		prev_num = result;
 		flag = true;
 		p_flag = false;
 
