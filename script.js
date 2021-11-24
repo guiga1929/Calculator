@@ -104,7 +104,6 @@ function buttonPress (button, text) {
 
 		if (act_num == 0) {
 			act_num = parseFloat(screen.textContent);
-			alert("diferent de 0 o valor é de", act_num);
 		}
 		console.log(prev_num, operation, act_num);
 
